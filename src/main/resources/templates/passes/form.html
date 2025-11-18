@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create Bus Pass</title>
+    <link rel="stylesheet" href="/css/pass-style.css">
+</head>
+
+<body >
+    <div class="form-shell">
+      <h1 class="title">Register for Bus Pass</h1>
+
+      <form th:action="@{${formAction}}" th:object="${pass}" method="post" class="form">
+          <input type="hidden" th:field="*{id}" />
+
+          <div class="div-form">
+              <label class="form-label">Name</label>
+              <input class="form-input" type="text" th:field="*{name}" required />
+          </div>
+
+          <div class="div-form">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" th:field="*{email}" required />
+          </div>
+
+          <div class="div-form">
+              <label class="form-label">Pass Type</label>
+              <select class="form-input" th:field="*{passType}">
+                  <option value="">Select Pass Type</option>
+                  <option value="AC" th:selected="${pass.passType == 'AC'}">AC</option>
+                  <option value="NON-AC" th:selected="${pass.passType == 'NON-AC'}">NON-AC</option>
+              </select>
+          </div>
+
+          <div class="div-form">
+              <label class="form-label">Start Date</label>
+              <input id="startDate" class="form-input" type="date" th:field="*{startDate}" />
+          </div>
+
+          <div class="div-form">
+              <label class="form-label">End Date</label>
+              <input id="endDate" class="form-input" type="date" th:field="*{endDate}" readonly />
+          </div>
+
+          <div class="div-submit">
+              <button class="btn" type="submit" th:text="${submitLabel}">Create</button>
+              <a class="btn-two" th:href="@{/passes}">Cancel</a>
+          </div>
+      </form>
+    </div>
+
+    <script src="/js/pass-date.js"></script>
+</body>
+</html>

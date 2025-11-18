@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View Bus Pass</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/view.css}" href="/css/view.css">
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>Bus Pass Details</h1>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <dl class="details">
+                <div class="row">
+                    <dt>ID</dt>
+                    <dd th:text="${pass.id}">—</dd>
+                </div>
+
+                <div class="row">
+                    <dt>Name</dt>
+                    <dd th:text="${pass.name}">—</dd>
+                </div>
+
+                <div class="row">
+                    <dt>Email</dt>
+                    <dd th:text="${pass.email}">—</dd>
+                </div>
+
+                <div class="row">
+                    <dt>Pass Type</dt>
+                    <dd th:text="${pass.passType}">—</dd>
+                </div>
+
+                <div class="row">
+                    <dt>Start Date</dt>
+                    <dd th:text="${pass.startDate}">—</dd>
+                </div>
+
+                <div class="row">
+                    <dt>End Date</dt>
+                    <dd th:text="${pass.endDate}">—</dd>
+                </div>
+            </dl>
+
+            <div class="actions">
+                <a class="back" th:href="@{/passes}" href="/passes">Back to list</a>
+                <a class="primary" th:href="@{|/passes/${pass.id}/edit|}" href="#">Edit</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <small>&copy; <span th:text="${T(java.time.Year).now().value}">2025</span> Transit System</small>
+    </footer>
+
+</body>
+</html>

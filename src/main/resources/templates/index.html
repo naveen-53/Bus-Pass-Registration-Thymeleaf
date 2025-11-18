@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>CityBus - Home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+  <main class="main">
+    <div class="div-main">
+      <header class="main-header">
+        <h1 class="brand">Bus Pass Registration</h1>
+        <nav class="main-nav">
+          <a class="nav-link" th:href="@{/passes}">View Passes</a>
+          <a class="nav-link" th:href="@{/passes/new}">Register</a>
+        </nav>
+      </header>
+
+      <section class="hero-content">
+        <div class="left">
+          <h2 class="headline">Get your bus pass — easy, fast, and secure.</h2>
+          <p class="subhead">Save money and travel comfortably. Choose AC or NON-AC passes and manage everything online.</p>
+
+          <div class="div-sec">
+            <a class="btn-primary" th:href="@{/passes/new}">Register Now</a>
+            <a class="btn-outline" th:href="@{/passes}">View List</a>
+          </div>
+
+          <div class="quotes">
+            <h3>Thoughts for the road</h3>
+            <ul>
+              <li th:each="q : ${quotes}" th:text="${q}">Sample quote</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="right" aria-hidden="true">
+        </div>
+      </section>
+
+      <footer class="hero-footer">
+        <small> <span th:text="${T(java.time.Year).now()}">2025</span> CityBus — Smooth rides every day</small>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

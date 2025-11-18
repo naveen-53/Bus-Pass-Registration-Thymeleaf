@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bus Passes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/list.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Bus Pass Registration</div>
+    <nav class="top-links">
+      <a th:href="@{/}">Home</a>
+      <a th:href="@{/passes}">View Passes</a>
+      <a th:href="@{/passes/new}" class="btn btn-primary small">Register</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page-list">
+  <section class="card list-card">
+
+    <div class="list-header">
+      <h2>Bus Passes</h2>
+      <a th:href="@{/passes/new}" class="btn btn-primary">+ Create New Pass</a>
+    </div>
+
+    <div class="table-wrap">
+      <table class="passes-table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Pass Type</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th style="width:170px">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr th:each="p : ${passes}">
+                  <td th:text="${p.id}">1</td>
+                  <td th:text="${p.name}">John</td>
+                  <td th:text="${p.email}">mail@gmail.com</td>
+                  <td th:text="${p.passType}">AC</td>
+                  <td th:text="${p.startDate}">2025-01-01</td>
+                  <td th:text="${p.endDate}">2025-01-31</td>
+                  <td class="actions">
+                      <a th:href="@{|/passes/${p.id}|}" class="link">View</a>
+                      <a th:href="@{|/passes/${p.id}/edit|}" class="link">Edit</a>
+                      <form th:action="@{|/passes/${p.id}/delete|}" method="post" style="display:inline;">
+                          <button type="submit" class="btn btn-danger tiny" onclick="return confirm('Delete this pass?');">Delete</button>
+                      </form>
+                  </td>
+              </tr>
+              <tr th:if="${#lists.isEmpty(passes)}">
+                  <td colspan="7" class="text-center">No passes found.</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+
+  </section>
+</main>
+
+<footer class="site-footer">2025 NaveenBus — Smooth rides every day</footer>
+
+</body>
+</html>
